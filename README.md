@@ -1,4 +1,4 @@
-# ProgrammingLanguagesScanner
+# ProgrammingLanguagesCourseProject
 
 ## Run instructions
 
