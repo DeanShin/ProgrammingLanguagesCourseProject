@@ -20,3 +20,14 @@ with open(input_file_path, 'r') as input_file:
             tokens = scanner.scan(line)
             printer.print(tokens)
             line = input_file.readline()
+
+
+def driver(input_file_path, output_file_path):
+    input_file = open(input_file_path, "r")
+    output_file = open(output_file_path,"w")
+    for line in input_file:
+        first_line = line.strip()
+        output_file.write("%s\n"%first_line)
+        # scanner function(first_line)
+    input_file.close()
+    output_file.close()
