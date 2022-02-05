@@ -1,12 +1,16 @@
 from token import Token
+import sys
 
-def printTokens(tokens):
+def printTokens(tokens, output_file):
     for tokenType, tokenValue in tokens:
         if tokenType is Token.NUMBER:
-            print(tokenValue+" : NUMBER")
+            output_file.write(tokenValue+" : NUMBER\n")
         elif tokenType is Token.IDENTIFIER:
-            print(tokenValue+" : IDENTIFIER")
+            output_file.write(tokenValue+" : IDENTIFIER\n")
         elif tokenType is Token.SYMBOL:
-            print(tokenValue+" : SYMBOL")
+            output_file.write(tokenValue+" : SYMBOL\n")
         elif tokenType is Token.ERROR:
-            print("ERROR READING \""+ tokenValue + "\"")
+            output_file.write("ERROR READING \""+ tokenValue + "\"\n")
+        else:
+            print(f'Unexpected tokenType {tokenType}--aborting.')
+            sys.exit()

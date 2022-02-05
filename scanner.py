@@ -32,5 +32,8 @@ def scan(line):
                 tokens.append([Token.NUMBER, longestValidSubstring])
             elif re.fullmatch(symbol_regex, longestValidSubstring):
                 tokens.append([Token.SYMBOL, longestValidSubstring])
+            else:
+                print("Unexpected longestValidSubstring")
+                sys.exit()
             i = lastValidJ
     return tokens
