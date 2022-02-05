@@ -8,5 +8,5 @@ def printTokens(tokens):
             print(tokenValue+" : IDENTIFIER")
         elif tokenType is Token.SYMBOL:
             print(tokenValue+" : SYMBOL")
-        elif tokenType is Token.ERROR):
+        elif tokenType is Token.ERROR:
             print("ERROR READING \""+ tokenValue + "\"")
