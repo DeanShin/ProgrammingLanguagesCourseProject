@@ -1,4 +1,4 @@
-Line: 34 + 89 - x * y23
+Line: 34 + 89 - x 	* y23
 34 : NUMBER
 + : SYMBOL
 89 : NUMBER
@@ -7,7 +7,11 @@ x : IDENTIFIER
 * : SYMBOL
 y23 : IDENTIFIER
 
-Line: cxo6y / 67z23 * 56& 34 * x
+Line: 
+
+Line: 
+
+Line: cxo6y / 67z23 * 56& 	34 * x
 cxo6y : IDENTIFIER
 / : SYMBOL
 67 : NUMBER
@@ -15,6 +19,8 @@ z23 : IDENTIFIER
 * : SYMBOL
 56 : NUMBER
 ERROR READING "&"
+
+Line: 
 
 Line: 2 + x
 2 : NUMBER
