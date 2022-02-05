@@ -18,5 +18,5 @@ with open(input_file_path, 'r') as input_file:
         while(line):
             print(f'Line: {line}')
             tokens = scanner.scan(line)
-            printer.print(tokens)
+            printer.printTokens(tokens)
             line = input_file.readline()

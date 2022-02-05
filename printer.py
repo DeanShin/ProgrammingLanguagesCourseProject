@@ -1,2 +1,3 @@
-def print(tokens):
+def printTokens(tokens):
+    print(tokens)
     return
