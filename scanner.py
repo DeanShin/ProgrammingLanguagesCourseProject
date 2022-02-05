@@ -16,20 +16,21 @@ def scan(line):
             j = i + 1
             while(j <= len(word)):
                 substr = word[i:j]
-                if re.match(identifier_regex, substr) or \
-                    re.match(number_regex, substr) or \
-                    re.match(symbol_regex, substr):
+                if re.fullmatch(identifier_regex, substr) or \
+                    re.fullmatch(number_regex, substr) or \
+                    re.fullmatch(symbol_regex, substr):
                     lastValidJ = j
                     longestValidSubstring = substr
                 j += 1
             if longestValidSubstring is None:
                 tokens.append([Token.ERROR, word[i]])
-                break
-            elif re.match(identifier_regex, longestValidSubstring):
+                # Don't read the rest of the line.
+                return tokens
+            elif re.fullmatch(identifier_regex, longestValidSubstring):
                 tokens.append([Token.IDENTIFIER, longestValidSubstring])
-            elif re.match(number_regex, longestValidSubstring):
+            elif re.fullmatch(number_regex, longestValidSubstring):
                 tokens.append([Token.NUMBER, longestValidSubstring])
-            elif re.match(symbol_regex, longestValidSubstring):
+            elif re.fullmatch(symbol_regex, longestValidSubstring):
                 tokens.append([Token.SYMBOL, longestValidSubstring])
             i = lastValidJ
     return tokens
