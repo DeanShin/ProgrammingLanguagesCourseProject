@@ -1,4 +1,4 @@
-# Dean Shin and Kunal Babbar -- Phase 1.1
+# Dean Shin and Kunal Babbar -- Phase 1.2
 import sys
 import scanner
 import printer

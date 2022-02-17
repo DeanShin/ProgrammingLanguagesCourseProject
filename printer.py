@@ -1,4 +1,4 @@
-# Dean Shin and Kunal Babbar -- Phase 1.1
+# Dean Shin and Kunal Babbar -- Phase 1.2
 from token import Token
 import sys
 
@@ -10,6 +10,8 @@ def printTokens(tokens, output_file):
             output_file.write(tokenValue+" : IDENTIFIER\n")
         elif tokenType is Token.SYMBOL:
             output_file.write(tokenValue+" : SYMBOL\n")
+        elif tokenType is Token.KEYWORD:
+            output_file.write(tokenValue+" : KEYWORD\n")
         elif tokenType is Token.ERROR:
             output_file.write("ERROR READING \""+ tokenValue + "\"\n")
         else:

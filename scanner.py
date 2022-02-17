@@ -1,10 +1,14 @@
-# Dean Shin and Kunal Babbar -- Phase 1.1
+# Dean Shin and Kunal Babbar -- Phase 1.2
 import re
+import sys
+
 from token import Token
 
 identifier_regex = "([a-z]|[A-Z])([a-z]|[A-Z]|[0-9])*"
 number_regex = "[0-9]+"
-symbol_regex = "\\+|\\-|\\*|/|\\(|\\)"
+symbol_regex = "\\+|\\-|\\*|/|\\(|\\)|:=|;"
+keyword_regex = "if|then|else|endif|while|do|endwhile|skip"
+
 
 def scan(line):
     tokens = []
@@ -19,7 +23,9 @@ def scan(line):
                 substr = word[i:j]
                 if re.fullmatch(identifier_regex, substr) or \
                     re.fullmatch(number_regex, substr) or \
-                    re.fullmatch(symbol_regex, substr):
+                    re.fullmatch(symbol_regex, substr) or \
+                    re.fullmatch(keyword_regex, substr):
+
                     lastValidJ = j
                     longestValidSubstring = substr
                 j += 1
@@ -27,6 +33,8 @@ def scan(line):
                 tokens.append([Token.ERROR, word[i]])
                 # Don't read the rest of the line.
                 return tokens
+            elif re.fullmatch(keyword_regex, longestValidSubstring):
+                tokens.append([Token.KEYWORD, longestValidSubstring])
             elif re.fullmatch(identifier_regex, longestValidSubstring):
                 tokens.append([Token.IDENTIFIER, longestValidSubstring])
             elif re.fullmatch(number_regex, longestValidSubstring):
