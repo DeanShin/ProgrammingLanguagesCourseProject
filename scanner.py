@@ -1,7 +1,6 @@
 # Dean Shin and Kunal Babbar -- Phase 1.2
 import re
 import sys
-
 from token import Token
 
 identifier_regex = "([a-z]|[A-Z])([a-z]|[A-Z]|[0-9])*"
