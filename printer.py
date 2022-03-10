@@ -17,3 +17,7 @@ def printTokens(tokens, output_file):
         else:
             print(f'Unexpected tokenType {tokenType}--aborting.')
             sys.exit()
+
+def printAST(ast, output_file):
+    # DO SOMETHING
+    return

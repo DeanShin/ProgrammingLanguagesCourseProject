@@ -6,7 +6,7 @@ class Parser():
         self.tokens = None
         self.nextToken = None
     
-    def parseTokens(self, tokens):
+    def parseTokens(self):
         # Do something here
         # Return abstract syntax tree
         return
