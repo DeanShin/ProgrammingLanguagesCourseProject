@@ -21,7 +21,7 @@ def printAST(ast: AbstractSyntaxTree, output_file: TextIOWrapper) -> None:
         s = ""
         for _ in range(depth):
             s += "\t"
-        (tokenType, tokenValue) = ast.key
+        (tokenType, tokenValue) = ast.token
         s += f'{tokenValue} : {tokenType}\n'
         output_file.write(s)
         
