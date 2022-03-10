@@ -11,6 +11,7 @@ keyword_regex = "if|then|else|endif|while|do|endwhile|skip"
 
 
 def scan(line: str) -> List[Tuple[Token, str]]:
+    line = line.strip()
     tokens = []
     words = line.split()
     for word in words:
@@ -30,9 +31,7 @@ def scan(line: str) -> List[Tuple[Token, str]]:
                     longestValidSubstring = substr
                 j += 1
             if longestValidSubstring is None:
-                tokens.append((Token.ERROR, word[i]))
-                # Don't read the rest of the line.
-                return tokens
+                raise Exception(f'Scanner Error: Encountered invalid character "{word[i]}" in line "{line}"')
             elif re.fullmatch(keyword_regex, longestValidSubstring):
                 tokens.append((Token.KEYWORD, longestValidSubstring))
             elif re.fullmatch(identifier_regex, longestValidSubstring):

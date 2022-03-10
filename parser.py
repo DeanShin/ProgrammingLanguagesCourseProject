@@ -49,7 +49,7 @@ class Parser():
             self.consumeToken()
             tree = self.parseExpr()
             if self.nextToken[1] != ")":
-                raise Exception("Expected ')', but got " + self.nextToken, self.nextToken)
+                raise Exception(f'Parser Error: Expected ")", but encountered token: {self.nextToken}')
             self.consumeToken()
             return tree
         elif self.nextToken and self.nextToken[0] == Token.NUMBER:
@@ -61,7 +61,7 @@ class Parser():
             self.consumeToken()
             return tree
         else:
-            raise Exception("Expected '(', NUMBER, or IDENTIFIER, but got " + self.nextToken, self.nextToken)
+            raise Exception(f'Parser Error: Expected "(", NUMBER, or IDENTIFIER, but encountered token: {self.nextToken}')
 
     def consumeToken(self) -> None:
         self.tokenIdx += 1

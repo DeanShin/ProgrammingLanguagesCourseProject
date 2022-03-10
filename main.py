@@ -20,7 +20,11 @@ with open(input_file_path, 'r') as input_file:
 
         line = input_file.readline()
         while(line):
-            tokens.extend(scanner.scan(line))
+            try:
+                tokens.extend(scanner.scan(line))
+            except Exception as ex:
+                output_file.write(ex.args[0])
+                sys.exit()
             line = input_file.readline()
 
         output_file.write("Tokens: \n\n")
@@ -28,7 +32,11 @@ with open(input_file_path, 'r') as input_file:
         output_file.write('\n')
 
         parser = Parser(tokens)
-        ast = parser.parseTokens()
+        try:
+            ast = parser.parseTokens()
+        except Exception as ex:
+            output_file.write(ex.args[0])
+            sys.exit()
 
         output_file.write("AST: \n\n")
         printer.printAST(ast, output_file)
