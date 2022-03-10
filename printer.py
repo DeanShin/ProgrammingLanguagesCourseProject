@@ -2,8 +2,9 @@
 from io import TextIOWrapper
 from token import Token
 from ast import AbstractSyntaxTree
+from typing import Tuple
 
-def printTokens(tokens, output_file: TextIOWrapper) -> None:
+def printTokens(tokens: Tuple[Token, str], output_file: TextIOWrapper) -> None:
     for tokenType, tokenValue in tokens:
         if tokenType is Token.ERROR:
             output_file.write("ERROR READING \""+ tokenValue + "\"\n")

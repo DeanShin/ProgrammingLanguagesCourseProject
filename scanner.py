@@ -2,6 +2,7 @@
 import re
 import sys
 from token import Token
+from typing import List, Tuple
 
 identifier_regex = "([a-z]|[A-Z])([a-z]|[A-Z]|[0-9])*"
 number_regex = "[0-9]+"
@@ -9,7 +10,7 @@ symbol_regex = "\\+|\\-|\\*|/|\\(|\\)|:=|;"
 keyword_regex = "if|then|else|endif|while|do|endwhile|skip"
 
 
-def scan(line):
+def scan(line: str) -> List[Tuple[Token, str]]:
     tokens = []
     words = line.split()
     for word in words:

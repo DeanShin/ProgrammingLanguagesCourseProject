@@ -1,5 +1,5 @@
 # Dean Shin and Kunal Babbar -- Phase 2.1
-from enum import Enum, auto
+from enum import Enum
 
 
 class Token(Enum):
@@ -11,5 +11,3 @@ class Token(Enum):
 
     def __str__(self):
         return str(self.value)
-
-
