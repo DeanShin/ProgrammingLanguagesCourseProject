@@ -3,11 +3,11 @@ from enum import Enum, auto
 
 
 class Token(Enum):
-    IDENTIFIER = "Identifier"
-    NUMBER = "Number"
-    SYMBOL = "Symbol"
-    KEYWORD = "Keyword"
-    ERROR = "Error"
+    IDENTIFIER = "IDENTIFIER"
+    NUMBER = "NUMBER"
+    SYMBOL = "SYMBOL"
+    KEYWORD = "KEYWORD"
+    ERROR = "ERROR"
 
     def __str__(self):
         return str(self.value)

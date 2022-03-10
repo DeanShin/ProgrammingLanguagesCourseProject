@@ -29,17 +29,17 @@ def scan(line):
                     longestValidSubstring = substr
                 j += 1
             if longestValidSubstring is None:
-                tokens.append([Token.ERROR, word[i]])
+                tokens.append((Token.ERROR, word[i]))
                 # Don't read the rest of the line.
                 return tokens
             elif re.fullmatch(keyword_regex, longestValidSubstring):
-                tokens.append([Token.KEYWORD, longestValidSubstring])
+                tokens.append((Token.KEYWORD, longestValidSubstring))
             elif re.fullmatch(identifier_regex, longestValidSubstring):
-                tokens.append([Token.IDENTIFIER, longestValidSubstring])
+                tokens.append((Token.IDENTIFIER, longestValidSubstring))
             elif re.fullmatch(number_regex, longestValidSubstring):
-                tokens.append([Token.NUMBER, longestValidSubstring])
+                tokens.append((Token.NUMBER, longestValidSubstring))
             elif re.fullmatch(symbol_regex, longestValidSubstring):
-                tokens.append([Token.SYMBOL, longestValidSubstring])
+                tokens.append((Token.SYMBOL, longestValidSubstring))
             else:
                 print("Unexpected longestValidSubstring")
                 sys.exit()

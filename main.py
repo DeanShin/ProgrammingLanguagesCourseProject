@@ -20,7 +20,6 @@ with open(input_file_path, 'r') as input_file:
 
         line = input_file.readline()
         while(line):
-            output_file.write(f'Line: {line.strip()}\n')
             tokens.extend(scanner.scan(line))
             line = input_file.readline()
 
@@ -28,10 +27,10 @@ with open(input_file_path, 'r') as input_file:
         printer.printTokens(tokens, output_file)
         output_file.write('\n')
 
-        parser = Parser()
-        ast = parser.parseTokens(tokens)
+        parser = Parser(tokens)
+        ast = parser.parseTokens()
 
         output_file.write("AST: \n\n")
-        printer.printAST(ast)
+        printer.printAST(ast, output_file)
         output_file.write('\n')
             
