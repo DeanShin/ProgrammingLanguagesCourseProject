@@ -3,10 +3,13 @@ from enum import Enum, auto
 
 
 class Token(Enum):
-    IDENTIFIER = auto()
-    NUMBER = auto()
-    SYMBOL = auto()
-    KEYWORD = auto()
-    ERROR = auto()
+    IDENTIFIER = "Identifier"
+    NUMBER = "Number"
+    SYMBOL = "Symbol"
+    KEYWORD = "Keyword"
+    ERROR = "Error"
+
+    def __str__(self):
+        return str(self.value)
 
 
