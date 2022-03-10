@@ -2,6 +2,7 @@
 import re
 import sys
 from token import Token
+from typing import List, Tuple
 
 identifier_regex = "([a-z]|[A-Z])([a-z]|[A-Z]|[0-9])*"
 number_regex = "[0-9]+"
@@ -9,7 +10,7 @@ symbol_regex = "\\+|\\-|\\*|/|\\(|\\)|:=|;"
 keyword_regex = "if|then|else|endif|while|do|endwhile|skip"
 
 
-def scan(line):
+def scan(line: str) -> List[Tuple[Token, str]]:
     tokens = []
     words = line.split()
     for word in words:
@@ -29,17 +30,17 @@ def scan(line):
                     longestValidSubstring = substr
                 j += 1
             if longestValidSubstring is None:
-                tokens.append([Token.ERROR, word[i]])
+                tokens.append((Token.ERROR, word[i]))
                 # Don't read the rest of the line.
                 return tokens
             elif re.fullmatch(keyword_regex, longestValidSubstring):
-                tokens.append([Token.KEYWORD, longestValidSubstring])
+                tokens.append((Token.KEYWORD, longestValidSubstring))
             elif re.fullmatch(identifier_regex, longestValidSubstring):
-                tokens.append([Token.IDENTIFIER, longestValidSubstring])
+                tokens.append((Token.IDENTIFIER, longestValidSubstring))
             elif re.fullmatch(number_regex, longestValidSubstring):
-                tokens.append([Token.NUMBER, longestValidSubstring])
+                tokens.append((Token.NUMBER, longestValidSubstring))
             elif re.fullmatch(symbol_regex, longestValidSubstring):
-                tokens.append([Token.SYMBOL, longestValidSubstring])
+                tokens.append((Token.SYMBOL, longestValidSubstring))
             else:
                 print("Unexpected longestValidSubstring")
                 sys.exit()

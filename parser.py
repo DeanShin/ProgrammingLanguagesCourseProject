@@ -4,14 +4,13 @@ from token import Token
 from ast import AbstractSyntaxTree
 
 class Parser():
-    def __init__(self):
+    def __init__(self, tokens) -> None:
         self.tokenIdx = 0
-        self.tokens = None
-        self.nextToken = None
+        self.tokens = tokens
+        self.nextToken = tokens[0]
     
-    def parseTokens(self, tokens):
-        tree = self.consumeToken()
-        return tree
+    def parseTokens(self) -> AbstractSyntaxTree:
+        return self.parseExpr()
 
     def parseExpr(self):
         tree = self.parseTerm()
@@ -61,6 +60,6 @@ class Parser():
             raise Exception("Expected '(', NUMBER, or IDENTIFIER, but got " + self.nextToken, self.nextToken)
 
     def consumeToken(self):
-        self.nextToken = self.tokens[self.tokenIdx]
         self.tokenIdx += 1
+        self.nextToken = self.tokens[self.tokenIdx]
         return

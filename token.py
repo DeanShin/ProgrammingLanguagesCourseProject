@@ -1,12 +1,13 @@
 # Dean Shin and Kunal Babbar -- Phase 2.1
-from enum import Enum, auto
+from enum import Enum
 
 
 class Token(Enum):
-    IDENTIFIER = auto()
-    NUMBER = auto()
-    SYMBOL = auto()
-    KEYWORD = auto()
-    ERROR = auto()
+    IDENTIFIER = "IDENTIFIER"
+    NUMBER = "NUMBER"
+    SYMBOL = "SYMBOL"
+    KEYWORD = "KEYWORD"
+    ERROR = "ERROR"
 
-
+    def __str__(self):
+        return str(self.value)
