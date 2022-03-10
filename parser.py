@@ -1,15 +1,17 @@
 # Dean Shin and Kunal Babbar -- Phase 2.1
 
-nextToken = None
-tokenIdx = None
-
-def parseTokens(tokens):
-    # Do something here
+class Parser():
+    def __init__(self):
+        self.tokenIdx = 0
+        self.tokens = None
+        self.nextToken = None
     
-    # Return abstract syntax tree
-    return
+    def parseTokens(self, tokens):
+        # Do something here
+        # Return abstract syntax tree
+        return
 
-
-def consumeToken():
-    # I will do something here
-    return
+    def consumeToken(self):
+        self.nextToken = self.tokens[self.tokenIdx]
+        self.tokenIdx += 1
+        return
