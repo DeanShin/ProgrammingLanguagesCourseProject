@@ -27,7 +27,7 @@ def printAST(root: AbstractSyntaxTree, output_file: TextIO) -> None:
         s += f'{tokenValue} : {tokenType}\n'
         output_file.write(s)
 
-        printASTRec(ast.left, depth + 1)
-        printASTRec(ast.right, depth + 1)
-
+        for child in ast.children:
+            printASTRec(child, depth + 1)
+            
     printASTRec(root, 0)
