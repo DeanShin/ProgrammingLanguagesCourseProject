@@ -11,7 +11,7 @@ class Parser:
         self.nextToken = tokens[0]
 
     def parseTokens(self) -> AbstractSyntaxTree:
-        return self.parseExpr()
+        return self.parseStatement()
 
     def parseExpr(self) -> AbstractSyntaxTree:
         tree = self.parseTerm()
@@ -45,6 +45,46 @@ class Parser:
             tree = AbstractSyntaxTree(token, tree, self.parseElement())
         return tree
 
+    def parseStatement(self) -> AbstractSyntaxTree:
+        tree = self.parseBaseStatement()
+        while self.nextToken and self.nextToken[1] == "+":
+            token = self.nextToken
+            self.consumeToken()
+            tree = AbstractSyntaxTree(token, tree, self.parseTerm())
+        return tree
+
+    def parseBaseStatement(self) -> AbstractSyntaxTree:
+        tree = self.parseAssignment
+        while self.nextToken and self.nextToken[1] == "-":
+            token = self.nextToken
+            self.consumeToken()
+            tree = AbstractSyntaxTree(token, tree, self.parseFactor())
+        return tree
+
+    def parseAssignment(self) -> AbstractSyntaxTree:
+        tree = self.parseIfStatement()
+        while self.nextToken and self.nextToken[1] == "/":
+            token = self.nextToken
+            self.consumeToken()
+            tree = AbstractSyntaxTree(token, tree, self.parsePiece())
+        return tree
+
+    def parseIfStatement(self) -> AbstractSyntaxTree:
+        tree = self.parseWhileStatement()
+        while self.nextToken and self.nextToken[1] == "*":
+            token = self.nextToken
+            self.consumeToken()
+            tree = AbstractSyntaxTree(token, tree, self.parseElement())
+        return tree
+
+    def parseWhileStatement(self) -> AbstractSyntaxTree:
+        tree = self.parseElement()
+        while self.nextToken and self.nextToken[1] == "*":
+            token = self.nextToken
+            self.consumeToken()
+            tree = AbstractSyntaxTree(token, tree, self.parseElement())
+        return tree
+
     def parseElement(self) -> AbstractSyntaxTree:
         if self.nextToken and self.nextToken[1] == "(":
             self.consumeToken()
@@ -64,6 +104,8 @@ class Parser:
         else:
             raise Exception(
                 f'Parser Error: Expected "(", NUMBER, or IDENTIFIER, but encountered token: {self.nextToken}')
+
+
 
     def consumeToken(self) -> None:
         self.tokenIdx += 1
