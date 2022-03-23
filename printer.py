@@ -10,7 +10,10 @@ def printTokens(tokens: List[Tuple[Token, str]], output_file: TextIO) -> None:
         if tokenType is Token.ERROR:
             output_file.write("ERROR READING \"" + tokenValue + "\"\n")
         else:
-            output_file.write(f'{tokenValue} : {tokenType}\n')
+            if tokenType is Token.INTERNAL:
+                output_file.write(tokenValue)
+            else:
+                output_file.write(f'{tokenValue} : {tokenType}\n')
 
 
 def printAST(root: AbstractSyntaxTree, output_file: TextIO) -> None:
@@ -24,10 +27,13 @@ def printAST(root: AbstractSyntaxTree, output_file: TextIO) -> None:
         for _ in range(depth):
             s += "\t"
         (tokenType, tokenValue) = ast.token
-        s += f'{tokenValue} : {tokenType}\n'
+        if tokenType is Token.INTERNAL:
+            s += tokenValue
+        else:
+            s += f'{tokenValue} : {tokenType}\n'
         output_file.write(s)
 
         for child in ast.children:
             printASTRec(child, depth + 1)
-            
+
     printASTRec(root, 0)

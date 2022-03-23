@@ -7,6 +7,7 @@ class Token(Enum):
     NUMBER = "NUMBER"
     SYMBOL = "SYMBOL"
     KEYWORD = "KEYWORD"
+    INTERNAL = "INTERNAL"
     ERROR = "ERROR"
 
     def __str__(self):
