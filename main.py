@@ -1,4 +1,4 @@
-# Dean Shin and Kunal Babbar -- Phase 2.1
+# Dean Shin and Kunal Babbar -- Phase 2.2
 import sys
 import scanner
 from parser import Parser

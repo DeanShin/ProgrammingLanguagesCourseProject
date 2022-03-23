@@ -1,5 +1,4 @@
-# Dean Shin and Kunal Babbar -- Phase 2.1
-from io import TextIOWrapper
+# Dean Shin and Kunal Babbar -- Phase 2.2
 from token import Token
 from ast import AbstractSyntaxTree
 from typing import Tuple, List, TextIO

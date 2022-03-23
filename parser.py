@@ -1,4 +1,4 @@
-# Dean Shin and Kunal Babbar -- Phase 2.1
+# Dean Shin and Kunal Babbar -- Phase 2.2
 
 from token import Token
 from ast import AbstractSyntaxTree
@@ -12,38 +12,6 @@ class Parser:
 
     def parseTokens(self) -> AbstractSyntaxTree:
         return self.parseStatement()
-
-    def parseExpr(self) -> AbstractSyntaxTree:
-        tree = self.parseTerm()
-        while self.nextToken and self.nextToken[1] == "+":
-            token = self.nextToken
-            self.consumeToken()
-            tree = AbstractSyntaxTree(token, tree, self.parseTerm())
-        return tree
-
-    def parseTerm(self) -> AbstractSyntaxTree:
-        tree = self.parseFactor()
-        while self.nextToken and self.nextToken[1] == "-":
-            token = self.nextToken
-            self.consumeToken()
-            tree = AbstractSyntaxTree(token, tree, self.parseFactor())
-        return tree
-
-    def parseFactor(self) -> AbstractSyntaxTree:
-        tree = self.parsePiece()
-        while self.nextToken and self.nextToken[1] == "/":
-            token = self.nextToken
-            self.consumeToken()
-            tree = AbstractSyntaxTree(token, tree, self.parsePiece())
-        return tree
-
-    def parsePiece(self) -> AbstractSyntaxTree:
-        tree = self.parseElement()
-        while self.nextToken and self.nextToken[1] == "*":
-            token = self.nextToken
-            self.consumeToken()
-            tree = AbstractSyntaxTree(token, tree, self.parseElement())
-        return tree
 
     def parseStatement(self) -> AbstractSyntaxTree:
         tree = self.parseBaseStatement()
@@ -107,6 +75,38 @@ class Parser:
         if not self.nextToken or self.nextToken[1] != "endwhile":
             raise Exception(f"Expected 'endwhile', but encountered token: {self.nextToken}")
         return AbstractSyntaxTree([Token.INTERNAL, "WHILE-LOOP"], expr, statement)
+
+    def parseExpr(self) -> AbstractSyntaxTree:
+        tree = self.parseTerm()
+        while self.nextToken and self.nextToken[1] == "+":
+            token = self.nextToken
+            self.consumeToken()
+            tree = AbstractSyntaxTree(token, tree, self.parseTerm())
+        return tree
+
+    def parseTerm(self) -> AbstractSyntaxTree:
+        tree = self.parseFactor()
+        while self.nextToken and self.nextToken[1] == "-":
+            token = self.nextToken
+            self.consumeToken()
+            tree = AbstractSyntaxTree(token, tree, self.parseFactor())
+        return tree
+
+    def parseFactor(self) -> AbstractSyntaxTree:
+        tree = self.parsePiece()
+        while self.nextToken and self.nextToken[1] == "/":
+            token = self.nextToken
+            self.consumeToken()
+            tree = AbstractSyntaxTree(token, tree, self.parsePiece())
+        return tree
+
+    def parsePiece(self) -> AbstractSyntaxTree:
+        tree = self.parseElement()
+        while self.nextToken and self.nextToken[1] == "*":
+            token = self.nextToken
+            self.consumeToken()
+            tree = AbstractSyntaxTree(token, tree, self.parseElement())
+        return tree
 
     def parseElement(self) -> AbstractSyntaxTree:
         if self.nextToken and self.nextToken[1] == "(":
