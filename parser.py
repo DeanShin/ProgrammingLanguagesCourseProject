@@ -119,7 +119,7 @@ class Parser:
         if self.nextToken and self.nextToken[1] == "(":
             self.consumeToken()
             tree = self.parseExpr()
-            if self.nextToken[1] != ")":
+            if not self.nextToken or self.nextToken[1] != ")":
                 raise Exception(f'Parser Error: Expected ")", but encountered token: {self.nextToken}')
             self.consumeToken()
             return tree
