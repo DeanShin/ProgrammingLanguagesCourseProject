@@ -84,20 +84,29 @@ class Parser:
         return tree
 
     def parseIfStatement(self) -> AbstractSyntaxTree:
-        tree = self.parseWhileStatement()
-        while self.nextToken and self.nextToken[1] == "*":
-            token = self.nextToken
-            self.consumeToken()
-            tree = AbstractSyntaxTree(token, tree, self.parseWhileStatement())
-        return tree
+        if not self.nextToken or self.nextToken[1] != "if":
+            raise Exception(f"Expected 'if', but encountered token: {self.nextToken}")
+        expr = self.parseExpr()
+        if not self.nextToken or self.nextToken[1] != "then":
+            raise Exception(f"Expected 'then', but encountered token: {self.nextToken}")
+        ifStatement = self.parseStatement()
+        if not self.nextToken or self.nextToken[1] != "else":
+            raise Exception(f"Expected 'else', but encountered token: {self.nextToken}")
+        elseStatement = self.parseStatement()
+        if not self.nextToken or self.nextToken[1] != "endif":
+            raise Exception(f"Expected 'endif', but encountered token: {self.nextToken}")
+        return AbstractSyntaxTree([Token.INTERNAL, "IF-STATEMENT"], expr, ifStatement, elseStatement)
 
     def parseWhileStatement(self) -> AbstractSyntaxTree:
-        tree = self.parseElement()
-        while self.nextToken and self.nextToken[1] == "*":
-            token = self.nextToken
-            self.consumeToken()
-            tree = AbstractSyntaxTree(token, tree, self.parseElement())
-        return tree
+        if not self.nextToken or self.nextToken[1] != "while":
+            raise Exception(f"Expected 'while', but encountered token: {self.nextToken}")
+        expr = self.parseExpr()
+        if not self.nextToken or self.nextToken[1] != "do":
+            raise Exception(f"Expected 'do', but encountered token: {self.nextToken}")
+        statement = self.parseStatement()
+        if not self.nextToken or self.nextToken[1] != "endwhile":
+            raise Exception(f"Expected 'endwhile', but encountered token: {self.nextToken}")
+        return AbstractSyntaxTree([Token.INTERNAL, "WHILE-LOOP"], expr, statement)
 
     def parseElement(self) -> AbstractSyntaxTree:
         if self.nextToken and self.nextToken[1] == "(":
