@@ -6,13 +6,10 @@ from typing import Tuple, List, TextIO
 
 def printTokens(tokens: List[Tuple[Token, str]], output_file: TextIO) -> None:
     for tokenType, tokenValue in tokens:
-        if tokenType is Token.ERROR:
+        if tokenType is Token.ERROR or tokenType is Token.INTERNAL:
             output_file.write("ERROR READING \"" + tokenValue + "\"\n")
         else:
-            if tokenType is Token.INTERNAL:
-                output_file.write(tokenValue)
-            else:
-                output_file.write(f'{tokenValue} : {tokenType}\n')
+            output_file.write(f'{tokenValue} : {tokenType}\n')
 
 
 def printAST(root: AbstractSyntaxTree, output_file: TextIO) -> None:
@@ -27,7 +24,7 @@ def printAST(root: AbstractSyntaxTree, output_file: TextIO) -> None:
             s += "\t"
         (tokenType, tokenValue) = ast.token
         if tokenType is Token.INTERNAL:
-            s += tokenValue
+            s += f'{tokenValue}\n'
         else:
             s += f'{tokenValue} : {tokenType}\n'
         output_file.write(s)

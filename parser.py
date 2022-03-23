@@ -54,26 +54,33 @@ class Parser:
     def parseIfStatement(self) -> AbstractSyntaxTree:
         if not self.nextToken or self.nextToken[1] != "if":
             raise Exception(f"Expected 'if', but encountered token: {self.nextToken}")
+        self.consumeToken()
         expr = self.parseExpr()
         if not self.nextToken or self.nextToken[1] != "then":
             raise Exception(f"Expected 'then', but encountered token: {self.nextToken}")
+        self.consumeToken()
         ifStatement = self.parseStatement()
         if not self.nextToken or self.nextToken[1] != "else":
             raise Exception(f"Expected 'else', but encountered token: {self.nextToken}")
+        self.consumeToken()
         elseStatement = self.parseStatement()
         if not self.nextToken or self.nextToken[1] != "endif":
             raise Exception(f"Expected 'endif', but encountered token: {self.nextToken}")
+        self.consumeToken()
         return AbstractSyntaxTree([Token.INTERNAL, "IF-STATEMENT"], expr, ifStatement, elseStatement)
 
     def parseWhileStatement(self) -> AbstractSyntaxTree:
         if not self.nextToken or self.nextToken[1] != "while":
             raise Exception(f"Expected 'while', but encountered token: {self.nextToken}")
+        self.consumeToken()
         expr = self.parseExpr()
         if not self.nextToken or self.nextToken[1] != "do":
             raise Exception(f"Expected 'do', but encountered token: {self.nextToken}")
+        self.consumeToken()
         statement = self.parseStatement()
         if not self.nextToken or self.nextToken[1] != "endwhile":
             raise Exception(f"Expected 'endwhile', but encountered token: {self.nextToken}")
+        self.consumeToken()
         return AbstractSyntaxTree([Token.INTERNAL, "WHILE-LOOP"], expr, statement)
 
     def parseExpr(self) -> AbstractSyntaxTree:

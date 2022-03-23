@@ -1,30 +1,44 @@
 Tokens: 
 
+z : IDENTIFIER
+:= : SYMBOL
+0 : NUMBER
+; : SYMBOL
+x : IDENTIFIER
+:= : SYMBOL
+10 : NUMBER
+; : SYMBOL
+y : IDENTIFIER
+:= : SYMBOL
+0 : NUMBER
+; : SYMBOL
+if : KEYWORD
+x : IDENTIFIER
+- : SYMBOL
+y : IDENTIFIER
+then : KEYWORD
+while : KEYWORD
+y : IDENTIFIER
+- : SYMBOL
+x : IDENTIFIER
+do : KEYWORD
+; : SYMBOL
+skip : KEYWORD
+endwhile : KEYWORD
+; : SYMBOL
+z : IDENTIFIER
+:= : SYMBOL
+z : IDENTIFIER
++ : SYMBOL
+y : IDENTIFIER
+; : SYMBOL
+y : IDENTIFIER
+:= : SYMBOL
+y : IDENTIFIER
++ : SYMBOL
 1 : NUMBER
-* : SYMBOL
-2 : NUMBER
-* : SYMBOL
-( : SYMBOL
-3 : NUMBER
-* : SYMBOL
-4 : NUMBER
-) : SYMBOL
-+ : SYMBOL
-5 : NUMBER
-/ : SYMBOL
-6 : NUMBER
+else : KEYWORD
+skip : KEYWORD
+endif : KEYWORD
 
-AST: 
-
-+ : SYMBOL
-	* : SYMBOL
-		* : SYMBOL
-			1 : NUMBER
-			2 : NUMBER
-		* : SYMBOL
-			3 : NUMBER
-			4 : NUMBER
-	/ : SYMBOL
-		5 : NUMBER
-		6 : NUMBER
-
+Parser Error: Expected "skip", "if", "while" or IDENTIFIER but encountered token: (<Token.SYMBOL: 'SYMBOL'>, ';')
