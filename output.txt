@@ -9,14 +9,22 @@ Tokens:
 * : SYMBOL
 4 : NUMBER
 ) : SYMBOL
++ : SYMBOL
+5 : NUMBER
+/ : SYMBOL
+6 : NUMBER
 
 AST: 
 
-* : SYMBOL
++ : SYMBOL
 	* : SYMBOL
-		1 : NUMBER
-		2 : NUMBER
-	* : SYMBOL
-		3 : NUMBER
-		4 : NUMBER
+		* : SYMBOL
+			1 : NUMBER
+			2 : NUMBER
+		* : SYMBOL
+			3 : NUMBER
+			4 : NUMBER
+	/ : SYMBOL
+		5 : NUMBER
+		6 : NUMBER
 
