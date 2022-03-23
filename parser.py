@@ -3,12 +3,13 @@
 from token import Token
 from ast import AbstractSyntaxTree
 
-class Parser():
+
+class Parser:
     def __init__(self, tokens) -> None:
         self.tokenIdx = 0
         self.tokens = tokens
         self.nextToken = tokens[0]
-    
+
     def parseTokens(self) -> AbstractSyntaxTree:
         return self.parseExpr()
 
@@ -61,7 +62,8 @@ class Parser():
             self.consumeToken()
             return tree
         else:
-            raise Exception(f'Parser Error: Expected "(", NUMBER, or IDENTIFIER, but encountered token: {self.nextToken}')
+            raise Exception(
+                f'Parser Error: Expected "(", NUMBER, or IDENTIFIER, but encountered token: {self.nextToken}')
 
     def consumeToken(self) -> None:
         self.tokenIdx += 1

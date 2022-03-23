@@ -19,7 +19,7 @@ with open(input_file_path, 'r') as input_file:
         tokens = []
 
         line = input_file.readline()
-        while(line):
+        while line:
             try:
                 tokens.extend(scanner.scan(line))
             except Exception as ex:

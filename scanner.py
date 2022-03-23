@@ -16,17 +16,16 @@ def scan(line: str) -> List[Tuple[Token, str]]:
     words = line.split()
     for word in words:
         i = 0
-        while(i < len(word)):
+        while i < len(word):
             lastValidJ = None
             longestValidSubstring = None
             j = i + 1
-            while(j <= len(word)):
+            while j <= len(word):
                 substr = word[i:j]
                 if re.fullmatch(identifier_regex, substr) or \
-                    re.fullmatch(number_regex, substr) or \
-                    re.fullmatch(symbol_regex, substr) or \
-                    re.fullmatch(keyword_regex, substr):
-
+                        re.fullmatch(number_regex, substr) or \
+                        re.fullmatch(symbol_regex, substr) or \
+                        re.fullmatch(keyword_regex, substr):
                     lastValidJ = j
                     longestValidSubstring = substr
                 j += 1
