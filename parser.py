@@ -47,26 +47,40 @@ class Parser:
 
     def parseStatement(self) -> AbstractSyntaxTree:
         tree = self.parseBaseStatement()
-        while self.nextToken and self.nextToken[1] == "+":
+        while self.nextToken and self.nextToken[1] == ";":
             token = self.nextToken
             self.consumeToken()
-            tree = AbstractSyntaxTree(token, tree, self.parseTerm())
+            tree = AbstractSyntaxTree(token, tree, self.parseBaseStatement())
         return tree
 
     def parseBaseStatement(self) -> AbstractSyntaxTree:
-        tree = self.parseAssignment
-        while self.nextToken and self.nextToken[1] == "-":
+        if self.nextToken and self.nextToken[1] == "skip":
             token = self.nextToken
             self.consumeToken()
-            tree = AbstractSyntaxTree(token, tree, self.parseFactor())
-        return tree
+            tree = AbstractSyntaxTree(token)
+            return tree
+        elif self.nextToken and self.nextToken[1] == "if":
+            return self.parseIfStatement()
+        elif self.nextToken and self.nextToken[1] == "while":
+            return self.parseWhileStatement()
+        elif self.nextToken and self.nextToken[0] == Token.IDENTIFIER:
+            return self.parseAssignment()
+        else:
+            raise Exception(
+                f'Parser Error: Expected "skip", "if", "while" or IDENTIFIER but encountered token: {self.nextToken}')
 
     def parseAssignment(self) -> AbstractSyntaxTree:
-        tree = self.parseIfStatement()
-        while self.nextToken and self.nextToken[1] == "/":
-            token = self.nextToken
-            self.consumeToken()
-            tree = AbstractSyntaxTree(token, tree, self.parsePiece())
+        if not self.nextToken or self.nextToken[0] != Token.IDENTIFIER:
+            raise Exception(
+                f'Parser Error: Expected IDENTIFIER but encountered token: {self.nextToken}')
+        identifier = self.nextToken
+        self.consumeToken()
+        if not self.nextToken or self.nextToken[1] != ":=":
+            raise Exception(
+                f'Parser Error: Expected ":=" but encountered token: {self.nextToken}')
+        symbol = self.nextToken
+        self.consumeToken()
+        tree = AbstractSyntaxTree(symbol, AbstractSyntaxTree(identifier), self.parseExpr())
         return tree
 
     def parseIfStatement(self) -> AbstractSyntaxTree:
@@ -74,7 +88,7 @@ class Parser:
         while self.nextToken and self.nextToken[1] == "*":
             token = self.nextToken
             self.consumeToken()
-            tree = AbstractSyntaxTree(token, tree, self.parseElement())
+            tree = AbstractSyntaxTree(token, tree, self.parseWhileStatement())
         return tree
 
     def parseWhileStatement(self) -> AbstractSyntaxTree:
@@ -104,8 +118,6 @@ class Parser:
         else:
             raise Exception(
                 f'Parser Error: Expected "(", NUMBER, or IDENTIFIER, but encountered token: {self.nextToken}')
-
-
 
     def consumeToken(self) -> None:
         self.tokenIdx += 1
