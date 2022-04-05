@@ -1,6 +1,7 @@
-# Dean Shin and Kunal Babbar -- Phase 2.2
+# Dean Shin and Kunal Babbar -- Phase 3.1
 import sys
 import scanner
+from evaluator import Evaluator
 from parser import Parser
 import printer
 
@@ -41,4 +42,14 @@ with open(input_file_path, 'r') as input_file:
         output_file.write("AST: \n\n")
         printer.printAST(ast, output_file)
         output_file.write('\n')
+
+        evaluator = Evaluator(ast)
+        try:
+            result = evaluator.evaluate()
+        except Exception as ex:
+            output_file.write(ex.args[0])
+            sys.exit()
+
+        output_file.write(f"Output: {result}")
+
             

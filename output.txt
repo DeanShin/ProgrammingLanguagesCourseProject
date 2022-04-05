@@ -1,44 +1,41 @@
 Tokens: 
 
-z : IDENTIFIER
-:= : SYMBOL
-0 : NUMBER
-; : SYMBOL
-x : IDENTIFIER
-:= : SYMBOL
+3 : NUMBER
+* : SYMBOL
+( : SYMBOL
+5 : NUMBER
++ : SYMBOL
 10 : NUMBER
-; : SYMBOL
-y : IDENTIFIER
-:= : SYMBOL
-0 : NUMBER
-; : SYMBOL
-if : KEYWORD
-x : IDENTIFIER
+/ : SYMBOL
+3 : NUMBER
 - : SYMBOL
-y : IDENTIFIER
-then : KEYWORD
-while : KEYWORD
-y : IDENTIFIER
-- : SYMBOL
-x : IDENTIFIER
-do : KEYWORD
-; : SYMBOL
-skip : KEYWORD
-endwhile : KEYWORD
-; : SYMBOL
-z : IDENTIFIER
-:= : SYMBOL
-z : IDENTIFIER
-+ : SYMBOL
-y : IDENTIFIER
-; : SYMBOL
-y : IDENTIFIER
-:= : SYMBOL
-y : IDENTIFIER
-+ : SYMBOL
 1 : NUMBER
-else : KEYWORD
-skip : KEYWORD
-endif : KEYWORD
+) : SYMBOL
+/ : SYMBOL
+5 : NUMBER
++ : SYMBOL
+32 : NUMBER
++ : SYMBOL
+( : SYMBOL
+2 : NUMBER
+) : SYMBOL
 
-Parser Error: Expected "skip", "if", "while" or IDENTIFIER but encountered token: (<Token.SYMBOL: 'SYMBOL'>, ';')
+AST: 
+
++ : SYMBOL
+	+ : SYMBOL
+		/ : SYMBOL
+			* : SYMBOL
+				3 : NUMBER
+				+ : SYMBOL
+					5 : NUMBER
+					- : SYMBOL
+						/ : SYMBOL
+							10 : NUMBER
+							3 : NUMBER
+						1 : NUMBER
+			5 : NUMBER
+		32 : NUMBER
+	2 : NUMBER
+
+Output: 38

@@ -1,12 +1,1 @@
-z := 0;
-x := 10;
-y := 0;
-if x-y then
-    while y - x do
-        skip
-    endwhile;
-z := z + y;
-y := y + 1
-else
-skip
-endif
+3 * (5 + 10 / 3 - 1) / 5 + 32 + (2)

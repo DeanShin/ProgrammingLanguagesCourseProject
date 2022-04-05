@@ -1,4 +1,4 @@
-# Dean Shin and Kunal Babbar -- Phase 2.2
+# Dean Shin and Kunal Babbar -- Phase 3.1
 
 from token import Token
 from ast import AbstractSyntaxTree
@@ -11,7 +11,8 @@ class Parser:
         self.nextToken = tokens[0]
 
     def parseTokens(self) -> AbstractSyntaxTree:
-        return self.parseStatement()
+        return self.parseExpr()
+        # return self.parseStatement()
 
     def parseStatement(self) -> AbstractSyntaxTree:
         tree = self.parseBaseStatement()
