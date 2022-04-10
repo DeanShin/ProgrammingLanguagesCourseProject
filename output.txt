@@ -1,41 +1,31 @@
 Tokens: 
 
-3 : NUMBER
-* : SYMBOL
-( : SYMBOL
 5 : NUMBER
-+ : SYMBOL
+* : SYMBOL
+3 : NUMBER
+/ : SYMBOL
+2 : NUMBER
+* : SYMBOL
 10 : NUMBER
 / : SYMBOL
-3 : NUMBER
-- : SYMBOL
-1 : NUMBER
-) : SYMBOL
-/ : SYMBOL
-5 : NUMBER
-+ : SYMBOL
-32 : NUMBER
-+ : SYMBOL
 ( : SYMBOL
-2 : NUMBER
+0 : NUMBER
++ : SYMBOL
+1 : NUMBER
 ) : SYMBOL
 
 AST: 
 
-+ : SYMBOL
-	+ : SYMBOL
-		/ : SYMBOL
-			* : SYMBOL
-				3 : NUMBER
-				+ : SYMBOL
-					5 : NUMBER
-					- : SYMBOL
-						/ : SYMBOL
-							10 : NUMBER
-							3 : NUMBER
-						1 : NUMBER
+/ : SYMBOL
+	/ : SYMBOL
+		* : SYMBOL
 			5 : NUMBER
-		32 : NUMBER
-	2 : NUMBER
+			3 : NUMBER
+		* : SYMBOL
+			2 : NUMBER
+			10 : NUMBER
+	+ : SYMBOL
+		0 : NUMBER
+		1 : NUMBER
 
-Output: 38
+Output: 0

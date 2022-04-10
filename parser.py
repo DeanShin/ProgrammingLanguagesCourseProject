@@ -8,7 +8,7 @@ class Parser:
     def __init__(self, tokens) -> None:
         self.tokenIdx = 0
         self.tokens = tokens
-        self.nextToken = tokens[0]
+        self.nextToken = tokens[0] if len(tokens) > 0 else None
 
     def parseTokens(self) -> AbstractSyntaxTree:
         return self.parseExpr()
