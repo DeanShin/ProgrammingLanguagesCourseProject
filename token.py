@@ -2,7 +2,7 @@
 from enum import Enum
 
 
-class Token(Enum):
+class TokenType(Enum):
     IDENTIFIER = "IDENTIFIER"
     NUMBER = "NUMBER"
     SYMBOL = "SYMBOL"
@@ -12,3 +12,12 @@ class Token(Enum):
 
     def __str__(self):
         return str(self.value)
+
+
+class Token:
+    def __init__(self, tokenType: TokenType, value: str):
+        self.tokenType = tokenType
+        self.value = value
+
+    def __str__(self):
+        return f'{self.tokenType} : {self.value}'

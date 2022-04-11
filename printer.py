@@ -1,15 +1,15 @@
 # Dean Shin and Kunal Babbar -- Phase 3.2
-from token import Token
+from token import Token, TokenType
 from ast import AbstractSyntaxTree
-from typing import Tuple, List, TextIO
+from typing import List, TextIO
 
 
-def printTokens(tokens: List[Tuple[Token, str]], output_file: TextIO) -> None:
-    for tokenType, tokenValue in tokens:
-        if tokenType is Token.ERROR or tokenType is Token.INTERNAL:
-            output_file.write("ERROR READING \"" + tokenValue + "\"\n")
+def printTokens(tokens: List[Token], output_file: TextIO) -> None:
+    for token in tokens:
+        if token.tokenType is TokenType.ERROR or token.tokenType is TokenType.INTERNAL:
+            output_file.write(f'ERROR READING \"{token}\"\n')
         else:
-            output_file.write(f'{tokenValue} : {tokenType}\n')
+            output_file.write(f'{token}\n')
 
 
 def printAST(root: AbstractSyntaxTree, output_file: TextIO) -> None:
@@ -22,11 +22,10 @@ def printAST(root: AbstractSyntaxTree, output_file: TextIO) -> None:
         s = ""
         for _ in range(depth):
             s += "\t"
-        (tokenType, tokenValue) = ast.token
-        if tokenType is Token.INTERNAL:
-            s += f'{tokenValue}\n'
+        if ast.token.tokenType is TokenType.INTERNAL:
+            s += f'{ast.token.value}\n'
         else:
-            s += f'{tokenValue} : {tokenType}\n'
+            s += f'{ast.token}\n'
         output_file.write(s)
 
         for child in ast.children:
