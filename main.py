@@ -50,6 +50,7 @@ with open(input_file_path, 'r') as input_file:
             output_file.write(ex.args[0])
             sys.exit()
 
-        output_file.write(f"Output: {result}")
+        output_file.write(f"Output: \n")
+        printer.printOutput(result, output_file)
 
             

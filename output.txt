@@ -1,39 +1,45 @@
 Tokens: 
 
-SYMBOL : (
-NUMBER : 5
-SYMBOL : *
-NUMBER : 3
+IDENTIFIER : x
+SYMBOL : :=
+NUMBER : 0
+SYMBOL : ;
+IDENTIFIER : x
+SYMBOL : :=
+IDENTIFIER : x
 SYMBOL : +
+NUMBER : 1
+SYMBOL : ;
+KEYWORD : if
+IDENTIFIER : x
+KEYWORD : then
+IDENTIFIER : y
+SYMBOL : :=
 NUMBER : 5
-SYMBOL : /
-SYMBOL : (
+SYMBOL : ;
+NUMBER : 5
+KEYWORD : else
+KEYWORD : skip
+KEYWORD : endif
+SYMBOL : ;
+IDENTIFIER : z
+SYMBOL : :=
 NUMBER : 2
+SYMBOL : ;
+KEYWORD : while
+IDENTIFIER : z
+KEYWORD : do
+IDENTIFIER : z
+SYMBOL : :=
+IDENTIFIER : z
+SYMBOL : -
+NUMBER : 1
+SYMBOL : ;
+IDENTIFIER : y
+SYMBOL : :=
+IDENTIFIER : y
 SYMBOL : +
 NUMBER : 1
-SYMBOL : )
-SYMBOL : )
-SYMBOL : /
-SYMBOL : (
-NUMBER : 3
-SYMBOL : +
-NUMBER : 1
-SYMBOL : )
+KEYWORD : endwhile
 
-AST: 
-
-SYMBOL : /
-	SYMBOL : +
-		SYMBOL : *
-			NUMBER : 5
-			NUMBER : 3
-		SYMBOL : /
-			NUMBER : 5
-			SYMBOL : +
-				NUMBER : 2
-				NUMBER : 1
-	SYMBOL : +
-		NUMBER : 3
-		NUMBER : 1
-
-Output: 4
+Parser Error: Expected "skip", "if", "while" or IDENTIFIER but encountered token: NUMBER : 5

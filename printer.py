@@ -1,7 +1,7 @@
 # Dean Shin and Kunal Babbar -- Phase 3.2
 from token import Token, TokenType
 from ast import AbstractSyntaxTree
-from typing import List, TextIO
+from typing import List, TextIO, Dict
 
 
 def printTokens(tokens: List[Token], output_file: TextIO) -> None:
@@ -32,3 +32,8 @@ def printAST(root: AbstractSyntaxTree, output_file: TextIO) -> None:
             printASTRec(child, depth + 1)
 
     printASTRec(root, 0)
+
+
+def printOutput(memory: Dict, output_file: TextIO) -> None:
+    for key, value in memory.items():
+        output_file.write(f'{key} = {value}\n')

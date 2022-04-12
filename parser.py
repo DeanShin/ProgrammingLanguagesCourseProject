@@ -12,8 +12,11 @@ class Parser:
         self.nextToken = tokens[0] if len(tokens) > 0 else None
 
     def parseTokens(self) -> AbstractSyntaxTree:
-        return self.parseExpr()
-        # return self.parseStatement()
+        result = self.parseStatement()
+        if self.tokenIdx != len(self.tokens):
+            raise Exception(f"Parser Error: did not process token {self.tokens[self.tokenIdx]} "
+                            f"and beyond due to missing semicolon.")
+        return result
 
     def parseStatement(self) -> AbstractSyntaxTree:
         tree = self.parseBaseStatement()
